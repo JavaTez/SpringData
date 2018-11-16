@@ -1,20 +1,15 @@
 package com.elearntez.spring.data.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="city")
-@NamedQuery(name = "City.fetchByDistrict",query = "SELECT c FROM City c WHERE District =:district ")
-public class City {
+@Table(name="city_new")
+public class CityNew {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

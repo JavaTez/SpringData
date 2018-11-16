@@ -15,7 +15,8 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.elearntez.spring.data.main.MyService;
+import com.elearntez.spring.data.service.MyService;
+import com.elearntez.spring.data.service.TransService;
 
 @Configuration
 @PropertySource("classpath:jdbc-config.properties")
@@ -50,7 +51,7 @@ public class Application {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(mysqlDataSource());
 		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-		entityManagerFactoryBean.setPackagesToScan("com.elearntez.spring.data");
+		entityManagerFactoryBean.setPackagesToScan("com.elearntez.spring.data.bean");
 		entityManagerFactoryBean.setJpaProperties(hibernateProperties());
 		return entityManagerFactoryBean;
 	}
@@ -66,7 +67,7 @@ public class Application {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		hibernateProperties.setProperty("hibernate.show_sql", "false");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		hibernateProperties.setProperty("hibernate.format_sql", "true");
 		return hibernateProperties;
 	}
@@ -76,4 +77,8 @@ public class Application {
 		return new MyService();
 	}
 
+	@Bean
+	public TransService transService(){
+		return new TransService();
+	}
 }

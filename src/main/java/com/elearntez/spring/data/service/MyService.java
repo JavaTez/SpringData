@@ -1,4 +1,4 @@
-package com.elearntez.spring.data.main;
+package com.elearntez.spring.data.service;
 
 import java.util.List;
 
@@ -21,7 +21,15 @@ public class MyService {
 	private CityRepository repo;
 	
 	
-	public void getCityById(int cityId){
+	
+	public void getAllCities(){
+		System.out.println(repo.getClass().getName());
+		repo.findAll().forEach(System.out::println);
+	}
+	
+	
+	
+	/*public void getCityById(int cityId){
 		City city = repo.getOne(1);
 		System.out.println(city);
 	}
@@ -70,7 +78,7 @@ public class MyService {
 	public void getCitiesWithPagenation(){
 		Page<City> cities =  repo.findByCountryCode("Ind",PageRequest.of(1,10));
 		System.out.println(cities.getNumberOfElements());
-	}
+	}*/
 	
 	
 }
